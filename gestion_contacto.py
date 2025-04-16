@@ -21,7 +21,7 @@ class GestionContactos:
             
             with open(self.nombre_archivo, 'a') as archivo:
                 for ejemplo in ejemplos:
-                    archivo.write(f'{ejemplo.id},{ejemplo.nombre},{ejemplo.telefono},{ejemplo.telefono}\n')
+                    archivo.write(f'{ejemplo.id},{ejemplo.nombre},{ejemplo.telefono},{ejemplo.email}\n')
                 
         def obtener_contactos_archivo(self):
             contactos_archivo = []
@@ -50,7 +50,7 @@ class GestionContactos:
             except Exception as e:
                 print(f'Ha ocurrido un error: {e}')
                 
-        def listar_contactos(self):
+        def mostrar_contactos(self):
             try:
                 with open(self.nombre_archivo, 'r') as archivo:
                     print(archivo.read())
@@ -60,12 +60,12 @@ class GestionContactos:
                 
         def buscar_contactos(self):
             try:
-                nombre_usuario = input('Introduce el nombre que quieres buscar: ').lower()
+                nombre_usuario = input('Introduce el nombre que quieres buscar: ').strip().lower()
                 contacto_encontrado = False
             
                 for contacto in self.contactos:
-                    if nombre_usuario in contacto.nombre.lower():
-                        print(f'Id: {contacto.id},Nombre: {contacto.nombre},Telefono: {contacto.telefono},Email: {contacto.email}')
+                    if nombre_usuario in contacto.nombre.strip().lower():
+                        print(f'{contacto.id},{contacto.nombre},{contacto.telefono},{contacto.email}')
                         contacto_encontrado = True
                     
                 if not contacto_encontrado:
@@ -77,12 +77,12 @@ class GestionContactos:
             
         def eliminar_contacto(self):
             try:
-                eliminar_contacto = input('Introduce el nombre del contacto que quieres eliminar: ')
+                eliminar_contacto = input('Introduce el nombre del contacto que quieres eliminar: ').strip().lower()
                 nuevos_contactos = []
                 eliminado = False
                 
                 for contacto in self.contactos:
-                    if eliminar_contacto not in contacto.nombre.lower():
+                    if eliminar_contacto not in contacto.nombre.strip().lower():
                         nuevos_contactos.append(contacto)
                     else:
                         eliminado = True
@@ -99,10 +99,3 @@ class GestionContactos:
                         
             except Exception as e:
                 print(f'Error al eliminar contacto: {e}')
-                                  
-            
-if __name__ == '__main__':
-    gestion_contacto = GestionContactos()
-    # gestion_contacto.agregar_contacto()
-    # gestion_contacto.buscar_contactos()
-    gestion_contacto.eliminar_contacto()
