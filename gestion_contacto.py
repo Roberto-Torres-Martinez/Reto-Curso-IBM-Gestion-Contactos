@@ -1,5 +1,6 @@
 from contacto import Contacto
 import os.path
+import re
 
 class GestionContactos:
         
@@ -14,9 +15,9 @@ class GestionContactos:
             
         def agregar_ejemplos(self):
             ejemplos = [
-                Contacto("Alcides", "675304234","alcidescon@gmailcom" ),
-                Contacto("Roberto", "722181442","roberxiri@gmail.com" ),
-                Contacto("Facundo", "692916064","facuscrollinic@gmail.com")
+                Contacto("Alcides", "645377588","alcidescon@gmailcom" ),
+                Contacto("Roberto", "611367589","roberxiri@gmail.com" ),
+                Contacto("Facundo", "643246385","facuscrollinic@gmail.com")
             ]
             
             with open(self.nombre_archivo, 'a') as archivo:
@@ -42,6 +43,16 @@ class GestionContactos:
                 nombre = input('Nombre de contacto a agregar: ')
                 telefono = input('Telefono de contacto a agregar: ')
                 email = input('Email de contacto a agregar: ')
+                
+                if not nombre or not telefono or not email:
+                    print('Error: Rellenar todos los campos')
+                    return
+                
+                email_requerido = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+                if not re.match(email_requerido, email):
+                    print('Error: Formato de correo electrónico inválido')
+                    return
+                
                 nuevo_contacto = Contacto(nombre, telefono, email)
                 with open(self.nombre_archivo, 'a') as archivo:
                     archivo.write(f'{nuevo_contacto}\n')
