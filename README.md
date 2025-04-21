@@ -20,5 +20,3 @@ Permite agregar, mostrar, buscar y eliminar contactos, guardándolos en un archi
 - Agregar, mostrar, buscar y eliminar contactos.
 - Validación de correo electrónico y campos obligatorios.
 - Manejo de errores en archivos y operaciones.
-  
----
