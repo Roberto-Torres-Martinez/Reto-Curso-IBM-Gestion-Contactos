@@ -1,6 +1,6 @@
-# 📇 Sistema de Gestión de Contactos
+# Sistema de Gestión de Contactos
 
-## 📖 Descripción
+## Descripción
 
 Programa en Python que simula una agenda de contactos.  
 Permite agregar, mostrar, buscar y eliminar contactos, guardándolos en un archivo de texto con manejo de errores y validaciones.
